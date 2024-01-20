@@ -95,6 +95,34 @@ namespace FullCart.Services.CategoryService
             }
         }
 
+        public async Task<IResponseDTO> GetAllCategories(string LoggedInUserId)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(LoggedInUserId);
+                if (user is null)
+                {
+                    _response.IsPassed = false;
+                    _response.Message = "User Not Exists";
+                    return _response;
+                }
+                else
+                {
+                    var categories=_categoryRepository.GetAll();
+                    _response.IsPassed = true;
+                    _response.Message = "Getting Categories";
+                    _response.Data = categories;
+                    _response.TotalCount=categories.Count();
+                    return _response;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }        
+        }
+
         public async Task<IResponseDTO> UpdateCategory(string LoggedInUserId, CategoryDto categoryDto)
         {
             try

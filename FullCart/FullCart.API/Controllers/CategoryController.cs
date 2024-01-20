@@ -38,5 +38,12 @@ namespace FullCart.API.Controllers
             var result = await _categoryService.UpdateCategory(LoggedInUserId, categoryDto);
             return result;
         }
+
+        [HttpGet, DisableRequestSizeLimit]
+        public async Task<IResponseDTO> GetAllCategories()
+        {
+            var result = await _categoryService.GetAllCategories(LoggedInUserId);
+            return result;
+        }
     }
 }

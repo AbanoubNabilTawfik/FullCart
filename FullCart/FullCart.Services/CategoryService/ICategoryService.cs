@@ -1,4 +1,5 @@
 ﻿using FullCart.Core.Interfaces;
+using FullCart.Data.DbModels.FullCartSchema;
 using FullCart.DTO.Brand;
 using FullCart.DTO.Category;
 using System;
@@ -13,5 +14,6 @@ namespace FullCart.Services.CategoryService
     {
         Task<IResponseDTO> CreateCategory(string LoggedInUserId, CategoryDto categoryDto);
         Task<IResponseDTO> UpdateCategory(string LoggedInUserId, CategoryDto categoryDto);
+        Task<IResponseDTO> GetAllCategories(string LoggedInUserId);
     }
 }

@@ -40,5 +40,12 @@ namespace FullCart.API.Controllers
 
             return result;
         }
+
+        [HttpGet, DisableRequestSizeLimit]
+        public async Task<IResponseDTO> GetAllBrands()
+        {
+            var result = await _brandService.GetAllBrands(LoggedInUserId);
+            return result;
+        }
     }
 }

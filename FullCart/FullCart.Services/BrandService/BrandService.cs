@@ -97,6 +97,35 @@ namespace FullCart.Services.BrandService
             }
         }
 
+        public async Task<IResponseDTO> GetAllBrands(string LoggedInUserId)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(LoggedInUserId);
+                if (user is null)
+                {
+                    _response.IsPassed = false;
+                    _response.Message = "User Not Exists";
+                    return _response;
+                }
+                else
+                {
+                    var brands = _brandRepository.GetAll();
+                    _response.IsPassed = true;
+                    _response.Message = "Getting Brands";
+                    _response.Data = brands;
+                    _response.TotalCount = brands.Count();
+                    _response.TotalPageCount= brands.Count()/10;
+                    return _response;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public async Task<IResponseDTO> UpdateBrand(string LoggedInUserId, BrandDto brandDto)
         {
             try

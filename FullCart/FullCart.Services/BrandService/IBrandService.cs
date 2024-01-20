@@ -12,6 +12,7 @@ namespace FullCart.Services.BrandService
     {
         Task<IResponseDTO> CreateBrand(string LoggedInUserId,BrandDto brandDto);
         Task<IResponseDTO> UpdateBrand(string LoggedInUserId, BrandDto brandDto);
+        Task<IResponseDTO> GetAllBrands(string LoggedInUserId);
 
     }
 }
