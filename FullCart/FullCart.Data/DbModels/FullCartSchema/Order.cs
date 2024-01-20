@@ -18,7 +18,7 @@ namespace FullCart.Data.DbModels.FullCartSchema
         public ICollection<Item> ?Items { get; set; }
 
         [ForeignKey("User")]
-        public long? UserID { get; set; }
+        public string? UserID { get; set; }
         public User? User { get; set; }
 
     }

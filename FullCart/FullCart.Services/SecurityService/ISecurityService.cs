@@ -11,7 +11,8 @@ namespace FullCart.Services.SecurityService
 {
     public interface ISecurityService
     {
-        Task<IResponseDTO> Register(int loggedInUserId, RegisterDto registerDto, IFormFile file);
+        Task<IResponseDTO> Register(string loggedInUserId, RegisterDto registerDto, IFormFile file);
+        Task<IResponseDTO> Login(LoginDto loginDto);
 
     }
 }

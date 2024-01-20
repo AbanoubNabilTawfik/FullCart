@@ -147,8 +147,8 @@ namespace FullCart.Data.Migrations
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<long?>("UserID")
-                        .HasColumnType("bigint");
+                    b.Property<string>("UserID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -160,6 +160,7 @@ namespace FullCart.Data.Migrations
             modelBuilder.Entity("FullCart.Data.DbModels.SecuritySchema.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
@@ -222,6 +223,9 @@ namespace FullCart.Data.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PersonalImagePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -259,11 +263,12 @@ namespace FullCart.Data.Migrations
 
             modelBuilder.Entity("FullCart.Data.DbModels.UserSchema.User", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -289,7 +294,7 @@ namespace FullCart.Data.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("User", "User");
                 });

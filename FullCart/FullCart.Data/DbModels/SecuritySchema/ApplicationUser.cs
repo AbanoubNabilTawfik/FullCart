@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +11,9 @@ namespace FullCart.Data.DbModels.SecuritySchema
 {
     public class ApplicationUser :IdentityUser
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public override string Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string FullName => $"{FirstName} {LastName}";
@@ -21,6 +26,7 @@ namespace FullCart.Data.DbModels.SecuritySchema
         public int UserRole { get; set; }
         public bool IsFirstLogin { get; set; } = true;
         public bool IsDeleted { get; set; }
+        public string ?PersonalImagePath { get; set; }
 
 
     }

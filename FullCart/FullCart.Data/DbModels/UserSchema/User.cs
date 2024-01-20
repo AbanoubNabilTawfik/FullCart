@@ -12,13 +12,15 @@ namespace FullCart.Data.DbModels.UserSchema
     [Table("User", Schema = "User")]
     public class User :BaseEntity
     {
-        public long ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string ?Id { get; set; }
         public int Status { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string FullName => $"{FirstName} {LastName}";
         public string Email { get; set; } = string.Empty;
         public string? PhoneNumber { get; set; }
+        public string? AppUserId { get; set; }
 
         public virtual ICollection<Order>? CustomerOrders { get; set; }
     }
