@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FullCart.Data.DbModels.FullCartSchema
 {
     [Table("Item", Schema = "FullCart")]
-    public class Item
+    public class Item :BaseEntity
     {
         public long Id { get; set; }
         public string ?Name { get; set; }

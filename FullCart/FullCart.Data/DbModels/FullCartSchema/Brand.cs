@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace FullCart.Data.DbModels.FullCartSchema
 {
     [Table("Brand", Schema = "FullCart")]
-    public class Brand
+    public class Brand :BaseEntity
     {
         public long Id { get; set; }
         public string? Name { get; set; }

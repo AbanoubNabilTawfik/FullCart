@@ -12,17 +12,14 @@ namespace FullCart.Data.DbContexts
     public class DataSeedingIntialization
     {
         private static AppDbContext _dbContext = null!;
-        private static UserManager<ApplicationUser> _userManager = null!;
         public static string[] AppAdminUserRolesNames = Enum.GetNames(typeof(EnUserRoles));
 
-        public static void SeedAppData(AppDbContext dbContext, UserManager<ApplicationUser>? userManager)
+        public static void SeedAppData(AppDbContext dbContext)
         {
             ArgumentNullException.ThrowIfNull(dbContext, nameof(dbContext));
-            ArgumentNullException.ThrowIfNull(userManager, nameof(userManager));
             dbContext.Database.EnsureCreated();
 
             _dbContext = dbContext;
-            _userManager = userManager;
 
             SeedAdminApplicationRoles();
           

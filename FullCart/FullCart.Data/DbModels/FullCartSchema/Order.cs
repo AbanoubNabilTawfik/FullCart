@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FullCart.Data.DbModels.FullCartSchema
 {
     [Table("Order", Schema = "FullCart")]
-    public class Order
+    public class Order :BaseEntity
     {
         public long Id { get; set; }
         public decimal TotalPrice { get; set; }
@@ -17,7 +17,7 @@ namespace FullCart.Data.DbModels.FullCartSchema
         public ICollection<Item> ?Items { get; set; }
 
         [ForeignKey("User")]
-        public string UserID { get; set; }
+        public string? UserID { get; set; }
         public ApplicationUser? User { get; set; }
 
     }

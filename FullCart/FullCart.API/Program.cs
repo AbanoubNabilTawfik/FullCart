@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,7 @@ connectionstring = builder.Configuration.GetConnectionString("FullCartConnection
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionstring));
 
 builder.Services.AddScoped<DataSeedingIntialization>();
+
 
 //Add autofac
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
@@ -121,15 +123,22 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<AppDbContext>();
+
+    // Apply migrations
+    context.Database.Migrate();
+
+    // Seed data
+    DataSeedingIntialization.SeedAppData(context);
+}
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseStaticFiles(new StaticFileOptions()
-{
-    FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.WebRootPath)),
-    RequestPath = new PathString("/files")
-});
 
 app.Run();
