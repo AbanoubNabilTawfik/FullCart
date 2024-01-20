@@ -58,7 +58,7 @@ namespace FullCart.Services.CategoryService
                 }
                 else
                 {
-                    var category = await _categoryRepository.GetFirstAsync(b => b.Name == categoryDto.Name);
+                    var category = await _categoryRepository.GetFirstAsync(b => b.Name == categoryDto.Name && !b.IsDeleted);
                     if (category is not null)
                     {
                         _response.IsPassed = false;
@@ -108,7 +108,7 @@ namespace FullCart.Services.CategoryService
                 }
                 else
                 {
-                    var categories=_categoryRepository.GetAll();
+                    var categories=_categoryRepository.GetAll(c=>!c.IsDeleted);
                     _response.IsPassed = true;
                     _response.Message = "Getting Categories";
                     _response.Data = categories;
@@ -137,7 +137,7 @@ namespace FullCart.Services.CategoryService
                 else
                 {
 
-                    var Category = await _categoryRepository.GetFirstAsync(b => b.Id == categoryDto.Id);
+                    var Category = await _categoryRepository.GetFirstAsync(b => b.Id == categoryDto.Id && !b.IsDeleted);
                     if (Category is null)
                     {
                         _response.IsPassed = false;
@@ -146,7 +146,7 @@ namespace FullCart.Services.CategoryService
                     }
                     else
                     {
-                        var isExistsCategory = await _categoryRepository.GetFirstAsync(b => b.Name == categoryDto.Name);
+                        var isExistsCategory = await _categoryRepository.GetFirstAsync(b => b.Name == categoryDto.Name&& !b.IsDeleted);
                         if (isExistsCategory is not null)
                         {
                             _response.IsPassed = false;

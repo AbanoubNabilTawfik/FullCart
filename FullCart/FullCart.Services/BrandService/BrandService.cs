@@ -59,7 +59,7 @@ namespace FullCart.Services.BrandService
                 }
                 else
                 {
-                    var brand =await  _brandRepository.GetFirstAsync(b => b.Name == brandDto.Name);
+                    var brand =await  _brandRepository.GetFirstAsync(b => b.Name == brandDto.Name&& !b.IsDeleted);
                     if(brand is not null)
                     {
                         _response.IsPassed = false;
@@ -110,7 +110,7 @@ namespace FullCart.Services.BrandService
                 }
                 else
                 {
-                    var brands = _brandRepository.GetAll();
+                    var brands = _brandRepository.GetAll(b=>!b.IsDeleted);
                     _response.IsPassed = true;
                     _response.Message = "Getting Brands";
                     _response.Data = brands;
@@ -140,7 +140,7 @@ namespace FullCart.Services.BrandService
                 else
                 {
                      
-                    var brand = await _brandRepository.GetFirstAsync(b => b.Id == brandDto.Id);
+                    var brand = await _brandRepository.GetFirstAsync(b => b.Id == brandDto.Id && !b.IsDeleted);
                     if (brand is null)
                     {
                         _response.IsPassed = false;
@@ -149,7 +149,7 @@ namespace FullCart.Services.BrandService
                     }
                     else
                     {
-                        var isExistsBrand = await _brandRepository.GetFirstAsync(b => b.Name == brandDto.Name);
+                        var isExistsBrand = await _brandRepository.GetFirstAsync(b => b.Name == brandDto.Name&& !b.IsDeleted);
                        if (isExistsBrand is not null)
                         {
                             _response.IsPassed = false;
