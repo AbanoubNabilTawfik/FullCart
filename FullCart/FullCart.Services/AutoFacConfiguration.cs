@@ -1,11 +1,13 @@
 ﻿using Autofac;
 using FullCart.Core.Common;
 using FullCart.Core.Interfaces;
+using FullCart.Repositories.Brand;
 using FullCart.Repositories.Category;
 using FullCart.Repositories.Generic;
 using FullCart.Repositories.Item;
 using FullCart.Repositories.UOW;
 using FullCart.Repositories.User;
+using FullCart.Services.BrandService;
 using FullCart.Services.CategoryService;
 using FullCart.Services.GlobalService;
 using FullCart.Services.ItemService;
@@ -53,6 +55,11 @@ namespace FullCart.Services
             #region Category
             builder.RegisterType<FullCart.Services.CategoryService.CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
             builder.RegisterType<FullCart.Repositories.Category.CategoryRepository>().As<ICategoryRepository>().InstancePerLifetimeScope();
+            #endregion
+
+            #region Brand
+            builder.RegisterType<FullCart.Services.BrandService.BrandService>().As<IBrandService>().InstancePerLifetimeScope();
+            builder.RegisterType<FullCart.Repositories.Brand.BrandRepository>().As<IBrandRepository>().InstancePerLifetimeScope();
             #endregion
 
         }
