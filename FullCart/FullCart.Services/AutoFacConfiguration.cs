@@ -3,6 +3,7 @@ using FullCart.Core.Common;
 using FullCart.Core.Interfaces;
 using FullCart.Repositories.Generic;
 using FullCart.Repositories.UOW;
+using FullCart.Services.SecurityService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,10 @@ namespace FullCart.Services
 
             #region Common
             builder.RegisterType<ResponseDTO>().As<IResponseDTO>().InstancePerLifetimeScope();
+            #endregion
+
+            #region Security
+            builder.RegisterType<FullCart.Services.SecurityService.SecurityService>().As<ISecurityService>().InstancePerLifetimeScope();
             #endregion
 
         }

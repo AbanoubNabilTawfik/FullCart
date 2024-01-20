@@ -1,4 +1,5 @@
 ﻿using FullCart.Data.DbModels.SecuritySchema;
+using FullCart.Data.DbModels.UserSchema;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,8 +18,8 @@ namespace FullCart.Data.DbModels.FullCartSchema
         public ICollection<Item> ?Items { get; set; }
 
         [ForeignKey("User")]
-        public string? UserID { get; set; }
-        public ApplicationUser? User { get; set; }
+        public long? UserID { get; set; }
+        public User? User { get; set; }
 
     }
 }

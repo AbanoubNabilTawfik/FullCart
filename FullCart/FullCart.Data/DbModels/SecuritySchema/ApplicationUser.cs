@@ -21,5 +21,7 @@ namespace FullCart.Data.DbModels.SecuritySchema
         public int UserRole { get; set; }
         public bool IsFirstLogin { get; set; } = true;
         public bool IsDeleted { get; set; }
+
+
     }
 }
