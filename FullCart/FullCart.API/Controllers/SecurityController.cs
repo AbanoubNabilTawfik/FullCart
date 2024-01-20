@@ -4,6 +4,7 @@ using FullCart.Services.SecurityService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace FullCart.API.Controllers
 {
@@ -22,11 +23,16 @@ namespace FullCart.API.Controllers
         }
 
         [HttpPost, DisableRequestSizeLimit]
-        [Authorize]
-        public async Task<IResponseDTO> Register(RegisterDto registerDto)
+        [SwaggerOperation(
+             Summary = "Upload a file",
+             Description = "Upload a file using a form.",
+             OperationId = "UploadFile",
+             Tags = new[] { "File" }
+           )]
+        public async Task<IResponseDTO> Register([FromForm] RegisterDto registerDto)
         {
-            IFormFile file = null;//Request.Form.Files.Count() > 0 ? Request.Form.Files[0] : null;
-            var result = await _securityService.Register(LoggedInUserId, registerDto, file);
+            //IFormFile file = null;//Request.Form.Files.Count() > 0 ? Request.Form.Files[0] : null;
+            var result = await _securityService.Register(LoggedInUserId, registerDto, registerDto.file);
 
             return result;
         }
