@@ -11,6 +11,7 @@ namespace FullCart.Data.DbModels.FullCartSchema
     [Table("Item", Schema = "FullCart")]
     public class Item :BaseEntity
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
         public string ?Name { get; set; }
         public string ?Description { get; set; }

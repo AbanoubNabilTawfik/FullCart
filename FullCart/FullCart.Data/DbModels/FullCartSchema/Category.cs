@@ -10,6 +10,7 @@ namespace FullCart.Data.DbModels.FullCartSchema
     [Table("Category", Schema = "FullCart")]
     public class Category :BaseEntity
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
         public string ?Name { get; set; }
         public string? Description { get; set; }

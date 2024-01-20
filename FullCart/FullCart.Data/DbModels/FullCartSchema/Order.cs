@@ -12,6 +12,7 @@ namespace FullCart.Data.DbModels.FullCartSchema
     [Table("Order", Schema = "FullCart")]
     public class Order :BaseEntity
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
         public decimal TotalPrice { get; set; }
         public int Status { get; set; }

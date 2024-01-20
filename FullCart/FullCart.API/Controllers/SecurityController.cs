@@ -23,12 +23,7 @@ namespace FullCart.API.Controllers
         }
 
         [HttpPost, DisableRequestSizeLimit]
-        [SwaggerOperation(
-             Summary = "Upload a file",
-             Description = "Upload a file using a form.",
-             OperationId = "UploadFile",
-             Tags = new[] { "File" }
-           )]
+  
         public async Task<IResponseDTO> Register([FromForm] RegisterDto registerDto)
         {
             //IFormFile file = null;//Request.Form.Files.Count() > 0 ? Request.Form.Files[0] : null;
