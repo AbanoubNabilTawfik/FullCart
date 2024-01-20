@@ -2,9 +2,11 @@
 using FullCart.Core.Common;
 using FullCart.Core.Interfaces;
 using FullCart.Repositories.Generic;
+using FullCart.Repositories.Item;
 using FullCart.Repositories.UOW;
 using FullCart.Repositories.User;
 using FullCart.Services.GlobalService;
+using FullCart.Services.ItemService;
 using FullCart.Services.SecurityService;
 using System;
 using System.Collections.Generic;
@@ -39,6 +41,12 @@ namespace FullCart.Services
 
             #region Upload
             builder.RegisterType<FullCart.Services.GlobalService.UploadFileService>().As<IUploadFileService>().InstancePerLifetimeScope();
+            #endregion
+
+            #region Item
+            builder.RegisterType<FullCart.Services.ItemService.ItemService>().As<IItemService>().InstancePerLifetimeScope();
+            builder.RegisterType<FullCart.Repositories.Item.ItemRepository>().As<IItemRepository>().InstancePerLifetimeScope();
+
             #endregion
 
         }
