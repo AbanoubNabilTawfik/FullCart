@@ -5,12 +5,14 @@ using FullCart.Repositories.Brand;
 using FullCart.Repositories.Category;
 using FullCart.Repositories.Generic;
 using FullCart.Repositories.Item;
+using FullCart.Repositories.Order;
 using FullCart.Repositories.UOW;
 using FullCart.Repositories.User;
 using FullCart.Services.BrandService;
 using FullCart.Services.CategoryService;
 using FullCart.Services.GlobalService;
 using FullCart.Services.ItemService;
+using FullCart.Services.OrderService;
 using FullCart.Services.SecurityService;
 using System;
 using System.Collections.Generic;
@@ -60,6 +62,11 @@ namespace FullCart.Services
             #region Brand
             builder.RegisterType<FullCart.Services.BrandService.BrandService>().As<IBrandService>().InstancePerLifetimeScope();
             builder.RegisterType<FullCart.Repositories.Brand.BrandRepository>().As<IBrandRepository>().InstancePerLifetimeScope();
+            #endregion
+
+            #region Order
+            builder.RegisterType<FullCart.Services.OrderService.OrderService>().As<IOrderService>().InstancePerLifetimeScope();
+            builder.RegisterType<FullCart.Repositories.Order.OrderRepository>().As<IOrderRepository>().InstancePerLifetimeScope();
             #endregion
 
         }
