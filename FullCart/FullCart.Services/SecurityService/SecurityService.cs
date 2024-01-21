@@ -219,6 +219,7 @@ namespace FullCart.Services.SecurityService
                             adminUser.AppUserId = appUser.Id;
                             adminUser.LMD = DateTime.Now;
                             adminUser.Status = (int)EnCustomerStatus.Active;
+                            
 
                             _userRepository.Add(adminUser);
                             await _unitOfWork.SaveAsync();

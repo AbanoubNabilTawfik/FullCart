@@ -6,6 +6,7 @@ using FullCart.Repositories.Category;
 using FullCart.Repositories.Generic;
 using FullCart.Repositories.Item;
 using FullCart.Repositories.Order;
+using FullCart.Repositories.OrderItem;
 using FullCart.Repositories.UOW;
 using FullCart.Repositories.User;
 using FullCart.Services.BrandService;
@@ -67,6 +68,10 @@ namespace FullCart.Services
             #region Order
             builder.RegisterType<FullCart.Services.OrderService.OrderService>().As<IOrderService>().InstancePerLifetimeScope();
             builder.RegisterType<FullCart.Repositories.Order.OrderRepository>().As<IOrderRepository>().InstancePerLifetimeScope();
+            #endregion
+
+            #region OrderItem
+            builder.RegisterType<FullCart.Repositories.OrderItem.OrderItemRepository>().As<IOrderItemRepository>().InstancePerLifetimeScope();
             #endregion
 
         }

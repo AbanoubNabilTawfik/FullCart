@@ -13,6 +13,7 @@ using System.Text;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
+using Autofac.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,6 +53,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(o =>
 })
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
+
 
 //add JWT to DI Container
 var jwt = builder.Configuration.GetSection("JWT");

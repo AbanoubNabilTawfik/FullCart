@@ -16,11 +16,12 @@ namespace FullCart.Data.DbModels.FullCartSchema
         public long Id { get; set; }
         public decimal TotalPrice { get; set; }
         public int Status { get; set; }
-        public ICollection<Item> ?Items { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
 
         [ForeignKey("User")]
         public string? UserID { get; set; }
         public User? User { get; set; }
+        public DateTime? CreatedOn { get; set; }
 
     }
 }

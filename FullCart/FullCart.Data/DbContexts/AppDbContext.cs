@@ -1,5 +1,6 @@
 ﻿using FullCart.Data.DbModels.FullCartSchema;
 using FullCart.Data.DbModels.SecuritySchema;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,7 +21,34 @@ namespace FullCart.Data.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<IdentityUserLogin<string>>(b =>
+            {
+                b.HasKey(l => new { l.LoginProvider, l.ProviderKey });
+                b.ToTable("AspNetUserLogins"); 
+            });
+            modelBuilder.Entity<IdentityUserRole<string>>(b =>
+            {
+                b.HasKey(r => new { r.UserId, r.RoleId });
+                b.ToTable("AspNetUserRoles"); 
+            });
+            modelBuilder.Entity<IdentityUserToken<string>>(b =>
+            {
+                b.HasKey(t => new { t.UserId, t.LoginProvider, t.Name });
+                b.ToTable("AspNetUserTokens");
+            });
+            modelBuilder.Entity<OrderItem>()
+                      .HasKey(oi => new { oi.OrderId, oi.ItemId });
+
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(oi => oi.Order)
+                .WithMany(o => o.OrderItems)
+                .HasForeignKey(oi => oi.OrderId);
+
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(oi => oi.Item)
+                .WithMany()  // No navigation property from OrderItem to Item
+                .HasForeignKey(oi => oi.ItemId);
+
         }
 
         #region FullCart
@@ -28,6 +56,7 @@ namespace FullCart.Data.DbContexts
         public virtual DbSet<Category>? Categories { get; set; }
         public virtual DbSet<Item>? Items { get; set; }
         public virtual DbSet<Order>? Orders { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
 
         #endregion
     }

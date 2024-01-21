@@ -1,20 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace FullCart.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class init2 : Migration
+    public partial class init3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "AppUserId",
-                schema: "User",
-                table: "User",
-                type: "nvarchar(max)",
+            migrationBuilder.AddColumn<DateTime>(
+                name: "CreatedOn",
+                schema: "FullCart",
+                table: "Order",
+                type: "datetime2",
                 nullable: true);
         }
 
@@ -22,9 +23,9 @@ namespace FullCart.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "AppUserId",
-                schema: "User",
-                table: "User");
+                name: "CreatedOn",
+                schema: "FullCart",
+                table: "Order");
         }
     }
 }

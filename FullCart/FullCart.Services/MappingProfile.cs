@@ -5,6 +5,7 @@ using FullCart.Data.DbModels.UserSchema;
 using FullCart.DTO.Brand;
 using FullCart.DTO.Category;
 using FullCart.DTO.Item;
+using FullCart.DTO.Order;
 using FullCart.DTO.Security;
 using System;
 using System.Collections.Generic;
@@ -24,12 +25,9 @@ namespace FullCart.Services
             CreateMap<Brand, BrandDto>().ReverseMap();
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Item, ItemDto>().ReverseMap();
-
-
-
-
-
-
+            CreateMap<Order, OrderDto>().ReverseMap();
+            CreateMap<Item, FullCart.DTO.Order.OrderItem>().ReverseMap();
+            CreateMap<FullCart.DTO.Order.OrderItem, FullCart.Data.DbModels.FullCartSchema.OrderItem>().ReverseMap();
 
         }
     }

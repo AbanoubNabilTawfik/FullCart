@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FullCart.Core\FullCart.Core.csproj" />
+    <ProjectReference Include="..\FullCart.Data\FullCart.Data.csproj" />
   </ItemGroup>
 
 </Project>
