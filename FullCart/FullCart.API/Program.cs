@@ -126,6 +126,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors(C => C.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
 
 using (var scope = app.Services.CreateScope())
 {

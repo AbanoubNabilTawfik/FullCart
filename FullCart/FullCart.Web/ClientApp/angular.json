@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "FullCart.Web"
+  "defaultProject": "FullCart.Web",
+  "cli": {
+    "analytics": false
+  }
 }
