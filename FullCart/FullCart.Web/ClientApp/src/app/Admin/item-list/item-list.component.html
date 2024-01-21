@@ -1,0 +1,23 @@
+<div class="container mt-4">
+    <h2>Item List</h2>
+
+  
+    <div class="row">
+      <div class="col-md-4" *ngFor="let item of items">
+        <div class="card">
+          <img [src]="item.image" class="card-img-top" alt="{{ item.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <p class="card-text">{{ item.description }}</p>
+            <p class="card-text"><strong>Price:</strong> ${{ item.price }}</p>
+            <p class="card-text"><strong>Available Quantity:</strong> {{ item.avaliableQuantity }}</p>
+            <a routerLink="/items/{{ item.id }}" class="btn btn-info">Details</a>
+            &nbsp;
+            <a routerLink="/update/{{ item.id }}" class="btn btn-warning">Update</a>
+            &nbsp;
+            <button (click)="deleteItem(item.id)" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

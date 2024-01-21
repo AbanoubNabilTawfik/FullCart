@@ -72,11 +72,11 @@ namespace FullCart.Services.SecurityService
                 {
                     var resetPassToken = await _userManager.GeneratePasswordResetTokenAsync(appUser);
                     // encode the token
-                    authorizedUserDto.Token = WebUtility.UrlEncode(resetPassToken);
+                    authorizedUserDto.AccessToken = WebUtility.UrlEncode(resetPassToken);
                 }
                 else
                 {
-                    authorizedUserDto.Token = GenerateJSONWebToken(appUser);
+                    authorizedUserDto.AccessToken = GenerateJSONWebToken(appUser);
                 }
 
                 var roles = await _userManager.GetRolesAsync(appUser);

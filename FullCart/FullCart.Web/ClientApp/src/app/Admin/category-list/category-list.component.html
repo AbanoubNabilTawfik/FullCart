@@ -1,0 +1,20 @@
+<div class="container mt-4">
+    <h2>Category List</h2>
+
+  
+    <div class="row">
+      <div class="col-md-4" *ngFor="let category of categories">
+        <div class="card">
+          <img [src]="category.image" class="card-img-top" alt="{{ category.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ category.name }}</h5>
+            <p class="card-text">{{ category.description }}</p>
+
+            <a routerLink="/update/{{ category.id }}" class="btn btn-warning">Update</a>
+            &nbsp;
+            <button (click)="deleteCategory(category.id)" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

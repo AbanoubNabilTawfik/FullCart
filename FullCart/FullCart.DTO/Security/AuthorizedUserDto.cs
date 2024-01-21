@@ -18,7 +18,7 @@ namespace FullCart.DTO.Security
         public bool ChangePassword { get; set; }
         public int? RoleId { get; set; }
         public string Status { get; set; } 
-        public string Token { get; set; }
+        public string AccessToken { get; set; }
         public DateTime Expiration { get; set; }
         public bool EmailConfirmed { get; set; }
 

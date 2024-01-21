@@ -1,6 +1,6 @@
 export class ResponseDto {
     isPassed?: boolean;
-    message?: string;
+    message: string="";
     data: any;
     totalPageCount?:number
     totalCount?:number
